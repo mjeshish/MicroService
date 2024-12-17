@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remitxsidentity-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: remitxsidentity
+  template:
+    metadata:
+      labels:
+        app: remitxsidentity
+    spec:
+      containers:
+        - name: remitxsidentity
+          image: devhblimageregistry.azurecr.io/remitxsidentity:latest
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: k8sdebhblrepo    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: remitxsidentity-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: remitxsidentity
+  ports:
+  - name: remitxsidentity
+    protocol: TCP
+    port: 8080
+    targetPort: 8080

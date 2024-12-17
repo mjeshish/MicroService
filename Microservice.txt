@@ -1,0 +1,47 @@
+dotnet new webapi -n CommandsService
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add initialmigration
+
+#add rabbitmq package
+dotnet add package RabbitMQ.Client
+
+#add Grpc package
+dotnet add package Grpc.AspNetCore  --source https://api.nuget.org/v3/index.json
+
+#add Grpc Tools package
+dotnet add package Grpc.Tools  --source https://api.nuget.org/v3/index.json
+
+#add Grpc Client package
+dotnet add package Grpc.Net.Client  --source https://api.nuget.org/v3/index.json
+
+#add Grpc Client package
+dotnet add package Google.Protobuf --source https://api.nuget.org/v3/index.json
+
+
+
+
+#Command to pull docker image forcefully
+Kubectl rollout restart deployment platforms-depl
+
+#command to deploy ingress nginx
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.2/deploy/static/provider/cloud/deploy.yaml
+
+
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="pass55w0rd!"
+
+pa55w0rd!
+
+ $(git rev-parse --abbrev-ref HEAD)-$(date +%s)-$(git rev-parse --short HEAD)
+ 
+ $(git rev-parse --abbrev-ref HEAD)-[int]( (Get-Date -UFormat %s) )-$(git rev-parse --short HEAD)
+ "$((git rev-parse --abbrev-ref HEAD))-$([int][double]::Parse((Get-Date -UFormat %s)))-$((git rev-parse --short HEAD))"
+$CI_COMMIT_REF_NAME-$([int][double]::Parse((Get-Date -UFormat %s)))-$CI_COMMIT_SHORT_SHA
+
+$[ format('{0:yyyyMMddHHmmss}', pipeline.startTime) ]
+$[ format('{0}', pipeline.startTime.ToUnixTimeSeconds()) ]
